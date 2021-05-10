@@ -12,7 +12,7 @@ namespace DesafioTake.Controllers
     public class RepositoryController : ControllerBase
     {
         [HttpGet]
-        public  async Task<string> GetRepositoryByLanguageAndCreatedDate(string language, int NumberOfResults)
+        public  async Task<string> GetRepositoryByLanguageAndCreatedDate(string language, int numberOfResults)
         {
             List<Repository.Details> result = await API.URLConnection();
             List<Repository.Details> RepositoriesByLanguage = new List<Repository.Details>();
@@ -24,10 +24,10 @@ namespace DesafioTake.Controllers
                 {
                     RepositoriesByLanguage.Add(obj);
                     count += 1;
-                    if (count == NumberOfResults) break;
+                    if (count == numberOfResults) break;
                 }
             }
-            var serialized = JsonConvert.SerializeObject(RepositoriesByLanguage);
+            var serialized = JsonConvert.SerializeObject(RepositoriesByLanguage,Formatting.Indented);
             return serialized;
         }         
 
